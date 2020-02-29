@@ -32,6 +32,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Logging", "Logging", "{7CDA35C8-0885-467F-B7B1-2872B1AAA8D7}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hackathon.Foundation.Logging", "src\Foundation\Logging\code\Hackathon.Foundation.Logging.csproj", "{DFDA7DA2-C2CD-4095-A0F4-7D5E064DF0CE}"
+EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{AFC4CC7A-A004-409F-972B-FB2820572110}"
 	ProjectSection(SolutionItems) = preProject
 		Directory.Build.props = Directory.Build.props
@@ -60,6 +61,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Meetup", "Meetup", "{3B1DF8
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hackathon.Project.Meetup", "src\Project\Meetup\code\Hackathon.Project.Meetup.csproj", "{84AAEE0E-C1CB-44A7-BFF5-984527B60307}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Serialization", "Serialization", "{86C5430B-2D5B-4BA9-8786-994FB2A80DFD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hackathon.Foundation.Serialization", "src\Foundation\Serialization\website\Hackathon.Foundation.Serialization.csproj", "{0E4D4321-7F58-41A6-BDCA-A9FF72E36DB3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -74,6 +79,10 @@ Global
 		{84AAEE0E-C1CB-44A7-BFF5-984527B60307}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{84AAEE0E-C1CB-44A7-BFF5-984527B60307}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{84AAEE0E-C1CB-44A7-BFF5-984527B60307}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E4D4321-7F58-41A6-BDCA-A9FF72E36DB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E4D4321-7F58-41A6-BDCA-A9FF72E36DB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E4D4321-7F58-41A6-BDCA-A9FF72E36DB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E4D4321-7F58-41A6-BDCA-A9FF72E36DB3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -86,6 +95,8 @@ Global
 		{C8B38624-C6F7-4345-91DC-B8C4FA826A20} = {AFC4CC7A-A004-409F-972B-FB2820572110}
 		{3B1DF829-D0D0-4A0C-8474-3F4B247249CE} = {15D97D61-D597-42EC-B7E9-E9EC8130E630}
 		{84AAEE0E-C1CB-44A7-BFF5-984527B60307} = {3B1DF829-D0D0-4A0C-8474-3F4B247249CE}
+		{86C5430B-2D5B-4BA9-8786-994FB2A80DFD} = {4FDA1DCD-D33E-447E-91C1-F4AE818E2CF0}
+		{0E4D4321-7F58-41A6-BDCA-A9FF72E36DB3} = {86C5430B-2D5B-4BA9-8786-994FB2A80DFD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {311DA37D-528B-43B2-A99B-E7253F841D46}
