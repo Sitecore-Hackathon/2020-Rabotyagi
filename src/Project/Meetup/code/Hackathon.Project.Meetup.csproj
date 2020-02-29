@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <RootNamespace>Hackathon.Project.Meetup</RootNamespace>
+    <AssemblyName>Hackathon.Project.Meetup</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="App_Config\Include\Project\Hackathon.Project.Meetup.SiteDefinition.config" />
+  </ItemGroup>
+<!-- Uncomment as needed; f.ex. if Sitecore package references not defined on solution scope - see .\build\props\Build.PackageReferences.props --> 
+  <ItemGroup>
+    <PackageReference Include="Sitecore.Kernel" Version="[9.3.0]">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Sitecore.Mvc" Version="[9.3.0]">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+  </ItemGroup> 
+  <ItemGroup>
+    <Folder Include="Scripts\" />
+    <Folder Include="Styles\" />
+  </ItemGroup> 
+</Project>

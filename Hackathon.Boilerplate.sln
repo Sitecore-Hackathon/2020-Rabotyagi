@@ -32,6 +32,33 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Logging", "Logging", "{7CDA35C8-0885-467F-B7B1-2872B1AAA8D7}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hackathon.Foundation.Logging", "src\Foundation\Logging\code\Hackathon.Foundation.Logging.csproj", "{DFDA7DA2-C2CD-4095-A0F4-7D5E064DF0CE}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{AFC4CC7A-A004-409F-972B-FB2820572110}"
+	ProjectSection(SolutionItems) = preProject
+		Directory.Build.props = Directory.Build.props
+		Directory.Build.targets = Directory.Build.targets
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "props", "props", "{4001CD34-F98A-41AB-8707-EE0000B558E8}"
+	ProjectSection(SolutionItems) = preProject
+		build\props\Website.BuildProperties.props = build\props\Website.BuildProperties.props
+		build\props\Website.PackageReferences.props = build\props\Website.PackageReferences.props
+		build\props\Website.ProjectContent.props = build\props\Website.ProjectContent.props
+		build\props\Website.Publishing.props = build\props\Website.Publishing.props
+		build\props\Website.References.props = build\props\Website.References.props
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "targets", "targets", "{C8B38624-C6F7-4345-91DC-B8C4FA826A20}"
+	ProjectSection(SolutionItems) = preProject
+		build\targets\Website.AutoPublish.targets = build\targets\Website.AutoPublish.targets
+		build\targets\Website.DoNotPublishAssembly.props = build\targets\Website.DoNotPublishAssembly.props
+		build\targets\Website.PublishSingleItem.targets = build\targets\Website.PublishSingleItem.targets
+		build\targets\Website.RemoveDoNotPublishAssembly.targets = build\targets\Website.RemoveDoNotPublishAssembly.targets
+		build\targets\Website.TransformXml.targets = build\targets\Website.TransformXml.targets
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Meetup", "Meetup", "{3B1DF829-D0D0-4A0C-8474-3F4B247249CE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hackathon.Project.Meetup", "src\Project\Meetup\code\Hackathon.Project.Meetup.csproj", "{84AAEE0E-C1CB-44A7-BFF5-984527B60307}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,6 +70,10 @@ Global
 		{DFDA7DA2-C2CD-4095-A0F4-7D5E064DF0CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DFDA7DA2-C2CD-4095-A0F4-7D5E064DF0CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DFDA7DA2-C2CD-4095-A0F4-7D5E064DF0CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84AAEE0E-C1CB-44A7-BFF5-984527B60307}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84AAEE0E-C1CB-44A7-BFF5-984527B60307}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84AAEE0E-C1CB-44A7-BFF5-984527B60307}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84AAEE0E-C1CB-44A7-BFF5-984527B60307}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -51,6 +82,10 @@ Global
 		{D27C83D2-2EAF-4E44-A1ED-2B3C2EBB5854} = {DAFED8F5-6CBD-4384-AAD6-DC3BCCF24911}
 		{7CDA35C8-0885-467F-B7B1-2872B1AAA8D7} = {4FDA1DCD-D33E-447E-91C1-F4AE818E2CF0}
 		{DFDA7DA2-C2CD-4095-A0F4-7D5E064DF0CE} = {7CDA35C8-0885-467F-B7B1-2872B1AAA8D7}
+		{4001CD34-F98A-41AB-8707-EE0000B558E8} = {AFC4CC7A-A004-409F-972B-FB2820572110}
+		{C8B38624-C6F7-4345-91DC-B8C4FA826A20} = {AFC4CC7A-A004-409F-972B-FB2820572110}
+		{3B1DF829-D0D0-4A0C-8474-3F4B247249CE} = {15D97D61-D597-42EC-B7E9-E9EC8130E630}
+		{84AAEE0E-C1CB-44A7-BFF5-984527B60307} = {3B1DF829-D0D0-4A0C-8474-3F4B247249CE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {311DA37D-528B-43B2-A99B-E7253F841D46}
