@@ -1,0 +1,44 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <RootNamespace>Hackathon.Foundation.GlassMapper</RootNamespace>
+    <AssemblyName>Hackathon.Foundation.GlassMapper</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Remove="App_Config\Include\Foundation\Glass.Mapper.Sc.config" />
+    <Content Remove="App_Config\Include\Foundation\Glass.Mapper.Sc.Start.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="App_Config\Include\Foundation\Hackathon.Foundation.GlassMapper.RegisterContainer.config" />
+  </ItemGroup>
+<!-- Uncomment as needed; f.ex. if Sitecore package references not defined on solution scope - see .\build\props\Build.PackageReferences.props --> 
+  <ItemGroup>
+    <PackageReference Include="Sitecore.Kernel" Version="[9.3.0]">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Sitecore.Mvc" Version="[9.3.0]">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Glass.Mapper.Sc.93" Version="5.6.160">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Glass.Mapper.Sc.93.Core" Version="5.6.160">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Glass.Mapper.Sc.93.Mvc" Version="5.6.160">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Glass.Mapper.Sc.93.WebForms" Version="5.6.160">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.1.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.1.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="GlassGenerator.tt" />
+    <None Update="GlassMappedClassTemplate.tt" />
+  </ItemGroup> 
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup> 
+</Project>

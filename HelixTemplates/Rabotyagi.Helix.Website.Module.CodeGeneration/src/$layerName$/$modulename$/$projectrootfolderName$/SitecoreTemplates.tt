@@ -1,0 +1,25 @@
+<#@ template language="C#" debug="True" #>
+<#@ output extension="gen.txt" #>
+<#@ include file="T4Toolbox.tt" #>
+<#@ include file="..\..\..\Foundation\GlassMapper\code\GlassGenerator.tt" #>
+<#
+	GlassGenerator generator = new GlassGenerator(
+            new PathInfo[] 
+            {
+                new PathInfo("master", @"..\serialization\", new [] 
+                {
+                    "/sitecore/templates/Sample/Sample Item"
+                })
+            },
+			(fieldId, fieldOptions) =>
+				{
+				});
+
+    generator.Run();
+
+	WriteLine("These files were generated:");
+	foreach(var file in generator.GeneratedFiles)
+	{
+		WriteLine(string.Concat("- ", file));
+	}
+#>
