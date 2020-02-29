@@ -29,12 +29,38 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "images", "images", "{D27C83
 		documentation\images\hackathon.png = documentation\images\hackathon.png
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{AFC4CC7A-A004-409F-972B-FB2820572110}"
+	ProjectSection(SolutionItems) = preProject
+		Directory.Build.props = Directory.Build.props
+		Directory.Build.targets = Directory.Build.targets
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "props", "props", "{4001CD34-F98A-41AB-8707-EE0000B558E8}"
+	ProjectSection(SolutionItems) = preProject
+		build\props\Website.BuildProperties.props = build\props\Website.BuildProperties.props
+		build\props\Website.PackageReferences.props = build\props\Website.PackageReferences.props
+		build\props\Website.ProjectContent.props = build\props\Website.ProjectContent.props
+		build\props\Website.Publishing.props = build\props\Website.Publishing.props
+		build\props\Website.References.props = build\props\Website.References.props
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "targets", "targets", "{C8B38624-C6F7-4345-91DC-B8C4FA826A20}"
+	ProjectSection(SolutionItems) = preProject
+		build\targets\Website.AutoPublish.targets = build\targets\Website.AutoPublish.targets
+		build\targets\Website.DoNotPublishAssembly.props = build\targets\Website.DoNotPublishAssembly.props
+		build\targets\Website.PublishSingleItem.targets = build\targets\Website.PublishSingleItem.targets
+		build\targets\Website.RemoveDoNotPublishAssembly.targets = build\targets\Website.RemoveDoNotPublishAssembly.targets
+		build\targets\Website.TransformXml.targets = build\targets\Website.TransformXml.targets
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{D27C83D2-2EAF-4E44-A1ED-2B3C2EBB5854} = {DAFED8F5-6CBD-4384-AAD6-DC3BCCF24911}
+		{4001CD34-F98A-41AB-8707-EE0000B558E8} = {AFC4CC7A-A004-409F-972B-FB2820572110}
+		{C8B38624-C6F7-4345-91DC-B8C4FA826A20} = {AFC4CC7A-A004-409F-972B-FB2820572110}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {311DA37D-528B-43B2-A99B-E7253F841D46}
