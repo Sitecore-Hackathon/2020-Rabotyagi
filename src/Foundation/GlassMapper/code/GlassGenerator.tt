@@ -1,0 +1,142 @@
+<#@ assembly name="$(SolutionDir)tools\CodeGenerator\Sitecore.CodeGenerator.dll" #>
+<#@ assembly name="%userprofile%\.nuget\packages\sitecore.kernel\9.3.0\lib\net471\Sitecore.Kernel.dll" #>
+<#@ assembly name="%userprofile%\.nuget\packages\glass.mapper.sc.93.core\5.6.160\lib\net471\Glass.Mapper.Sc.dll" #>
+<#@ assembly name="%userprofile%\.nuget\packages\rainbow.core\2.1.1\lib\net452\Rainbow.dll" #>
+<#@ assembly name="%userprofile%\.nuget\packages\rainbow.storage.yaml\2.1.1\lib\net452\Rainbow.Storage.Yaml.dll" #>
+<#@ import namespace="Sitecore.CodeGenerator" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="Glass.Mapper.Sc.Fields" #>
+<#@ include file="GlassMappedClassTemplate.tt" #>
+<#+
+// <copyright file="GlassGenerator.tt" company="">
+//  Copyright © . All Rights Reserved.
+// </copyright>
+
+public class PathInfo
+{
+    public string DatabaseName { get; set; }
+
+	public string PathToYamlFiles { get; set; }
+
+	public string[] SitecoreTreePaths { get; set; }
+
+    public PathInfo(string databaseName, string pathToYamlFiles, string[] sitecoreTreePaths)
+    {
+        PathToYamlFiles = pathToYamlFiles;
+        SitecoreTreePaths = sitecoreTreePaths;
+        DatabaseName = databaseName;
+    }
+}
+
+public class FieldOptions
+{
+	public string GlassFieldTypeName { get; set; }
+
+	public string AttributeExtras { get; set; }
+}
+
+public class GlassGenerator : Generator
+{
+	public GlassMappedClassTemplate GlassTemplate { get; private set; }
+
+	private Action<string,FieldOptions> SetCustomOptionsFunction { get; set; }
+
+	private PathInfo[] Paths { get; set; }
+
+	public List<string> GeneratedFiles { get; private set; }
+
+	public GlassGenerator(PathInfo[] paths, Action<string,FieldOptions> setCustomOptionsFunction)
+	{
+		SetCustomOptionsFunction = setCustomOptionsFunction;
+		Paths = paths;
+		this.GeneratedFiles = new List<string>();
+	}
+
+	protected override void RunCore()
+	{
+		// If you are using Rainbow serialization, you need to make some changes to the following lines
+		// This is described on https://github.com/hermanussen/sitecore.codegenerator#using-unicorns-rainbow-format
+		this.GlassTemplate = new GlassMappedClassTemplate();
+
+        var templatesToGenerateCode = new List<TemplateItem>();
+
+        foreach (var path in Paths) 
+        {
+            var resolver = new TemplatesResolverRainbow(
+			    Context.Host.ResolvePath(path.PathToYamlFiles),
+			    path.SitecoreTreePaths,
+			    path.DatabaseName);
+
+            templatesToGenerateCode.AddRange(resolver.Templates);
+        }
+
+		foreach(var template in templatesToGenerateCode)
+		{
+			this.GlassTemplate.Template = template;
+			this.GlassTemplate.GetFieldOptionsFunction = GetFieldOptions;
+			string fileName = string.Concat("I", this.GlassTemplate.Identifier(template.SyncItem.Name), ".gen.cs");
+			this.GlassTemplate.RenderToFile(fileName);
+			this.GeneratedFiles.Add(fileName);
+		}
+	}
+
+	public FieldOptions GetFieldOptions(string fieldType, string fieldId)
+	{
+		FieldOptions result = new FieldOptions();
+		switch (fieldType)
+		{
+			case "Checkbox":
+				result.GlassFieldTypeName = "bool";
+				break;
+			case "Integer":
+				result.GlassFieldTypeName = "int";
+				break;
+			case "Number":
+				result.GlassFieldTypeName = typeof(Decimal).Name;
+				break;
+			case "Date":
+			case "Datetime":
+				result.GlassFieldTypeName = typeof(DateTime).Name;
+				break;
+			case "File":
+			case "File Drop Area":
+				result.GlassFieldTypeName = typeof(File).Name;
+				break;
+			case "Name Value List":
+			case "Name Lookup Value List":
+				result.GlassFieldTypeName = typeof(System.Collections.Specialized.NameValueCollection).Name;
+				break;
+			// case "???": result.GlassFieldTypeName = typeof(HtmlEncodedString).Name; break;
+			case "Image":
+				result.GlassFieldTypeName = typeof(Image).Name;
+				break;
+			case "Droplink":
+			case "Droptree":
+            	result.GlassFieldTypeName = typeof(Guid).Name;
+                break;
+			case "General Link":
+			case "General Link with Search":
+			case "Version Link":
+			case "link":
+				result.GlassFieldTypeName = typeof(Link).Name;
+				break;
+			// case "???": result.GlassFieldTypeName = typeof(LinkType).Name; break;
+			case "Tristate":
+				result.GlassFieldTypeName = typeof(TriState).Name;
+				break;
+			case "Treelist":
+			case "TreelistEx":
+			case "Checklist":
+			case "Multilist":
+            case "Multilist with Search":
+	            result.GlassFieldTypeName = "IEnumerable<Guid>";
+                break;
+			default:
+				result.GlassFieldTypeName = "string";
+				break;
+		}
+		SetCustomOptionsFunction(fieldId, result);
+		return result;
+	}
+}
+#>

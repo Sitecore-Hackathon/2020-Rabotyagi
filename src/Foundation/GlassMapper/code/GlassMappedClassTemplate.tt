@@ -1,0 +1,132 @@
+<#@ assembly name="System.Core" #>
+<#@ assembly name="%userprofile%\.nuget\packages\sitecore.kernel\9.3.0\lib\net471\Sitecore.Kernel.dll" #>
+<#@ import namespace="Sitecore.CodeGenerator.Domain" #>
+<#@ import namespace="System.Linq" #>
+<#+
+public class GlassMappedClassTemplate : CSharpTemplate
+{
+	public TemplateItem Template { get; set; }
+
+	public Func<string,string,FieldOptions> GetFieldOptionsFunction { get; set; }
+
+	private string Extends { get; set; }
+
+    public string TemplateName
+    {
+        get 
+        {
+            if (Template.SyncItem.ItemPath.Contains("/Rendering Parameters/"))
+            {
+                return Template.SyncItem.Name + "RenderingParameters";
+            }
+            
+            return Template.SyncItem.Name;
+        }
+    }
+
+	public override string TransformText()
+	{
+		this.Extends = string.Empty;
+		if(this.Template.BaseTemplates.Any())
+		{
+			this.Extends = string.Concat(" : ", string.Join(", ", this.Template.BaseTemplates.Select(b => string.Concat("I", Identifier(b.SyncItem.Name)))));
+		}
+		else
+		{
+			this.Extends = " : IGlassBase";
+		}
+
+		base.TransformText();
+#>
+namespace <#= DefaultNamespace #>
+{
+	using System;
+    using System.Collections.Generic;
+	using System.Collections.Specialized;
+    using Sitecore.Data;
+    using global::Glass.Mapper.Sc.Configuration;
+    using global::Glass.Mapper.Sc.Configuration.Attributes;
+	using global::Glass.Mapper.Sc.Fields;
+    using Hackathon.Foundation.GlassMapper.Models;
+
+	/// <summary>
+	/// Represents a mapped type for item <#= Template.SyncItem.ID #> in Sitecore.
+	/// Path: <#= Template.SyncItem.ItemPath #>
+	/// </summary>
+	[SitecoreType(TemplateId = "<#= Template.SyncItem.ID #>")]
+	public partial interface I<#=Identifier(TemplateName)#><#=Extends#>
+	{
+<#+
+		foreach(var section in Template.Sections)
+		{
+#>
+		#region <#=section.SyncItem.Name#>
+
+<#+
+			foreach(var field in section.Fields)
+			{
+				var fieldOptions = GetFieldOptionsFunction(field.FieldTypeName, field.SyncItem.ID);
+				if(! string.IsNullOrWhiteSpace(field.FieldTitle))
+				{
+#>
+		/// <summary>
+		/// <#=field.FieldTitle#>
+		/// </summary>
+<#+
+				}
+#>
+	    [SitecoreField(FieldId = "<#=field.SyncItem.ID#>"<#=fieldOptions.AttributeExtras ?? string.Empty #>)]
+		<#=fieldOptions.GlassFieldTypeName#> <#=Identifier(field.SyncItem.Name)#> { get; set; }
+
+<#+
+			}
+#>
+		#endregion
+
+<#+
+		}
+#>
+	}
+
+    public static partial class <#= Identifier(TemplateName) #>Constants
+	{
+		public const string TemplateIdString = "<#= Template.SyncItem.ID.ToString() #>";
+		public static readonly ID TemplateId = new ID(TemplateIdString);
+		public const string TemplateName = "<#= TemplateName #>";
+<#+
+		foreach(var section in Template.Sections)
+		{
+#>
+
+		#region <#=section.SyncItem.Name#>
+
+<#+
+			foreach(var field in section.Fields)
+			{
+                if(! string.IsNullOrWhiteSpace(field.FieldTitle))
+				{
+#>
+		/// <summary>
+		/// <#=field.FieldTitle#>
+		/// </summary>
+<#+
+				}
+#>
+        public static readonly ID <#=Identifier(field.SyncItem.Name)#>FieldId = new ID("<#=field.SyncItem.ID.ToString()#>");
+		public const string <#=Identifier(field.SyncItem.Name)#>FieldName = "<#=field.SyncItem.Name#>";	
+
+<#+
+			}
+#>
+		#endregion
+
+<#+
+		}
+#>
+    }
+}
+<#+
+        return this.GenerationEnvironment.ToString();
+	}
+}
+#>
