@@ -18,6 +18,9 @@
       <Project>{E89C48BA-E70F-47D6-9550-ECA746D23286}</Project>
       <Name>Hackathon.Foundation.GlassMapper</Name>
     </ProjectReference>
+    <PackageReference Include="Glass.Mapper.Sc.93" Version="5.6.160">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <None Update="SitecoreTemplates.tt">
