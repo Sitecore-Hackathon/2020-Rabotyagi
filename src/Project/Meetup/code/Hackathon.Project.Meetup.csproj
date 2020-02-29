@@ -7,10 +7,35 @@
   <ItemGroup>
     <None Remove="App_Config\Include\Project\Hackathon.Project.Meetup.Serialization.config" />
     <None Remove="App_Config\Include\Project\Hackathon.Project.Meetup.SiteDefinition.config" />
+    <None Remove="Styles\addition.css" />
+    <None Remove="Styles\bower_components\bootstrap-sass\assets\fonts\bootstrap\glyphicons-halflings-regular.eot" />
+    <None Remove="Styles\bower_components\bootstrap-sass\assets\fonts\bootstrap\glyphicons-halflings-regular.ttf" />
+    <None Remove="Styles\bower_components\bootstrap-sass\assets\fonts\bootstrap\glyphicons-halflings-regular.woff" />
+    <None Remove="Styles\bower_components\bootstrap-sass\assets\fonts\bootstrap\glyphicons-halflings-regular.woff2" />
+    <None Remove="Styles\bower_components\font-awesome\fonts\fontawesome-webfont.eot" />
+    <None Remove="Styles\bower_components\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <None Remove="Styles\bower_components\font-awesome\fonts\fontawesome-webfont.woff" />
+    <None Remove="Styles\bower_components\font-awesome\fonts\fontawesome-webfont.woff2" />
+    <None Remove="Styles\bower_components\font-awesome\fonts\FontAwesome.otf" />
+    <None Remove="Styles\font-awesome.min.css" />
+    <None Remove="Styles\niteflight.min.css" />
+    <None Remove="Styles\vendor.min.css" />
     <None Remove="Views\Layouts\Default.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Styles\bower_components\bootstrap-sass\assets\fonts\bootstrap\glyphicons-halflings-regular.eot" />
+    <Content Include="Styles\bower_components\bootstrap-sass\assets\fonts\bootstrap\glyphicons-halflings-regular.ttf" />
+    <Content Include="Styles\bower_components\bootstrap-sass\assets\fonts\bootstrap\glyphicons-halflings-regular.woff" />
+    <Content Include="Styles\bower_components\bootstrap-sass\assets\fonts\bootstrap\glyphicons-halflings-regular.woff2" />
+    <Content Include="Styles\bower_components\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="Styles\bower_components\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Styles\bower_components\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="Styles\bower_components\font-awesome\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Styles\bower_components\font-awesome\fonts\FontAwesome.otf" />
   </ItemGroup>
 <!-- Uncomment as needed; f.ex. if Sitecore package references not defined on solution scope - see .\build\props\Build.PackageReferences.props --> 
   <ItemGroup>
+    <PackageReference Include="bootstrap" Version="4.4.1" />
     <PackageReference Include="Sitecore.Kernel" Version="[9.3.0]">
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
@@ -20,6 +45,5 @@
   </ItemGroup> 
   <ItemGroup>
     <Folder Include="Scripts\" />
-    <Folder Include="Styles\" />
   </ItemGroup> 
 </Project>
